@@ -8,7 +8,12 @@
       'target_name': 'openssl',
       'type': '<(library)',
       'defines': [
+        # ENGINESDIR must be defined if OPENSSLDIR is.
+        'ENGINESDIR="/dev/null"',
         'L_ENDIAN',
+        # Set to ubuntu default path for convenience. If necessary, override
+        # this at runtime with the SSL_CERT_DIR environment variable.
+        'OPENSSLDIR="/etc/ssl"',
         'OPENSSL_THREADS',
         'PURIFY',
         'TERMIO',
