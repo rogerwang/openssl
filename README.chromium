@@ -2,7 +2,7 @@ Name: openssl
 URL: http://openssl.org/source/
 Version: 0.9.8o
 License: BSDish
-License file: openssl/LICENSE
+License File: openssl/LICENSE
 
 This is OpenSSL, the standard SSL/TLS library, which is used only for testing.
 It's an unmodified, upstream source except for the patches listed below.
