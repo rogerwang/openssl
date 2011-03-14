@@ -4,6 +4,7 @@ Version: 0.9.8o
 License: BSDish
 License File: openssl/LICENSE
 
+Description:
 This is OpenSSL, the standard SSL/TLS library, which is used only for testing.
 It's an unmodified, upstream source except for the patches listed below.
 
