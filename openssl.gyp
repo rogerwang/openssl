@@ -582,7 +582,6 @@
       ],
       'include_dirs': [
         '.',
-        'config/k8',
         'openssl',
         'openssl/crypto',
         'openssl/crypto/asn1',
