@@ -589,7 +589,7 @@
         'openssl/include',
       ],
       'conditions': [
-        ['host_arch=="ia32"', {
+        ['target_arch=="ia32"', {
           'include_dirs': [
             'config/piii',
           ],
