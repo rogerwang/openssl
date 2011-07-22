@@ -593,17 +593,24 @@
           'include_dirs': [
             'config/piii',
           ],
+          'direct_dependent_settings': {
+            'include_dirs': [
+              'openssl/include',
+              'config/piii',
+            ],
+          },
         }, {
           'include_dirs': [
             'config/k8',
           ],
+          'direct_dependent_settings': {
+            'include_dirs': [
+              'openssl/include',
+              'config/k8',
+            ],
+          },
         }],
       ],
-      'direct_dependent_settings': {
-        'include_dirs': [
-          'openssl/include',
-        ],
-      },
     },
   ],
 }
