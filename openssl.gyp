@@ -8,12 +8,7 @@
       'target_name': 'openssl',
       'type': '<(library)',
       'defines': [
-        # ENGINESDIR must be defined if OPENSSLDIR is.
-        'ENGINESDIR="/dev/null"',
         'L_ENDIAN',
-        # Set to ubuntu default path for convenience. If necessary, override
-        # this at runtime with the SSL_CERT_DIR environment variable.
-        'OPENSSLDIR="/etc/ssl"',
         'OPENSSL_THREADS',
         'PURIFY',
         'TERMIO',
@@ -580,6 +575,38 @@
         'openssl/engines/e_sureware.c',
         'openssl/engines/e_ubsec.c',
       ],
+      'conditions': [
+        ['OS=="linux"', {
+          'defines': [
+            # ENGINESDIR must be defined if OPENSSLDIR is.
+            'ENGINESDIR="/dev/null"',
+            # Set to ubuntu default path for convenience. If necessary, override
+            # this at runtime with the SSL_CERT_DIR environment variable.
+            'OPENSSLDIR="/etc/ssl"',
+          ],
+        }],
+        ['OS=="linux" and target_arch=="ia32"', {
+            'variables': {
+              'openssl_config_path': 'config/piii',
+            },
+        }],
+        ['OS=="linux" and target_arch=="x64"', {
+            'variables': {
+              'openssl_config_path': 'config/k8',
+            },
+        }],
+        ['OS=="android"', {
+            'variables': {
+              'openssl_config_path': 'config/android',
+            },
+            'sources/': [
+              ['exclude', 'cast/.*$'],
+              ['exclude', 'crypto/md2/.*$'],
+              ['exclude', 'crypto/evp/e_camellia\.c'],
+              ['exclude', 'crypto/evp/m_mdc2\.c'],
+            ],
+        }],
+      ],
       'include_dirs': [
         '.',
         'openssl',
@@ -587,30 +614,14 @@
         'openssl/crypto/asn1',
         'openssl/crypto/evp',
         'openssl/include',
+        '<@(openssl_config_path)',
       ],
-      'conditions': [
-        ['target_arch=="ia32"', {
-          'include_dirs': [
-            'config/piii',
-          ],
-          'direct_dependent_settings': {
-            'include_dirs': [
-              'openssl/include',
-              'config/piii',
-            ],
-          },
-        }, {
-          'include_dirs': [
-            'config/k8',
-          ],
-          'direct_dependent_settings': {
-            'include_dirs': [
-              'openssl/include',
-              'config/k8',
-            ],
-          },
-        }],
-      ],
+      'direct_dependent_settings': {
+        'include_dirs': [
+          'openssl/include',
+          '<@(openssl_config_path)',
+        ],
+      },
     },
   ],
 }

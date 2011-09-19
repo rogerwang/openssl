@@ -5,7 +5,8 @@ License: BSDish
 License File: openssl/LICENSE
 
 Description:
-This is OpenSSL, the standard SSL/TLS library, which is used only for testing.
+This is OpenSSL, the standard SSL/TLS library, which is used only in Android.
+
 It's an unmodified, upstream source except for the patches listed below.
 
 
@@ -46,3 +47,9 @@ http://tools.ietf.org/html/draft-agl-tls-snapstart-00
 
 EXPERIMENTAL: this patches uses an extension number that is not assigned by
 IANA.
+
+
+Android platform support
+
+Copy config/android/openssl/opensslconf.h from Android's
+external/openssl/include/openssl/opensslconf.h
