@@ -584,27 +584,26 @@
             # this at runtime with the SSL_CERT_DIR environment variable.
             'OPENSSLDIR="/etc/ssl"',
           ],
-        }],
-        ['OS=="linux" and target_arch=="ia32"', {
-            'variables': {
-              'openssl_config_path': 'config/piii',
-            },
-        }],
-        ['OS=="linux" and target_arch=="x64"', {
-            'variables': {
-              'openssl_config_path': 'config/k8',
-            },
+          'variables': {
+            'conditions': [
+              ['target_arch=="ia32"', {
+                'openssl_config_path': 'config/piii',
+              }, {
+                'openssl_config_path': 'config/k8',
+              }],
+            ],
+          },
         }],
         ['OS=="android"', {
-            'variables': {
-              'openssl_config_path': 'config/android',
-            },
-            'sources/': [
-              ['exclude', 'cast/.*$'],
-              ['exclude', 'crypto/md2/.*$'],
-              ['exclude', 'crypto/evp/e_camellia\.c'],
-              ['exclude', 'crypto/evp/m_mdc2\.c'],
-            ],
+          'variables': {
+            'openssl_config_path': 'config/android',
+          },
+          'sources/': [
+            ['exclude', 'cast/.*$'],
+            ['exclude', 'crypto/md2/.*$'],
+            ['exclude', 'crypto/evp/e_camellia\.c'],
+            ['exclude', 'crypto/evp/m_mdc2\.c'],
+          ],
         }],
       ],
       'include_dirs': [
