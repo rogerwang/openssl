@@ -576,7 +576,7 @@
         'openssl/engines/e_ubsec.c',
       ],
       'conditions': [
-        ['OS=="linux"', {
+        ['os_posix==1 and OS!="android"', {
           'defines': [
             # ENGINESDIR must be defined if OPENSSLDIR is.
             'ENGINESDIR="/dev/null"',
