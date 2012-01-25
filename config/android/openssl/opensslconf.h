@@ -4,16 +4,6 @@
 /* OpenSSL was configured with the following options: */
 #ifndef OPENSSL_DOING_MAKEDEPEND
 
-#ifndef OPENSSL_NO_CMS
-# define OPENSSL_NO_CMS
-#endif
-#ifndef OPENSSL_NO_CAMELLIA
-# define OPENSSL_NO_CAMELLIA
-#endif
-#ifndef OPENSSL_NO_MDC2
-# define OPENSSL_NO_MDC2
-#endif
-
 
 #ifndef OPENSSL_NO_CAST
 # define OPENSSL_NO_CAST

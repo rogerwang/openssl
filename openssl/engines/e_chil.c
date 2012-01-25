@@ -227,7 +227,6 @@ static RAND_METHOD hwcrhk_rand =
 /* Constants used when creating the ENGINE */
 static const char *engine_hwcrhk_id = "chil";
 static const char *engine_hwcrhk_name = "CHIL hardware engine support";
-
 #ifndef OPENSSL_NO_DYNAMIC_ENGINE 
 /* Compatibility hack, the dynamic library uses this form in the path */
 static const char *engine_hwcrhk_id_alt = "ncipher";
@@ -842,8 +841,6 @@ static EVP_PKEY *hwcrhk_load_privkey(ENGINE *eng, const char *key_id,
 
 	return res;
  err:
-	if (res)
-		EVP_PKEY_free(res);
 #ifndef OPENSSL_NO_RSA
 	if (rtmp)
 		RSA_free(rtmp);
@@ -1080,11 +1077,11 @@ static int hwcrhk_mod_exp_mont(BIGNUM *r, const BIGNUM *a, const BIGNUM *p,
 static int hwcrhk_rsa_finish(RSA *rsa)
 	{
 	HWCryptoHook_RSAKeyHandle *hptr;
-	int ret;
+
 	hptr = RSA_get_ex_data(rsa, hndidx_rsa);
 	if (hptr)
                 {
-                ret = p_hwcrhk_RSAUnloadKey(*hptr, NULL);
+                p_hwcrhk_RSAUnloadKey(*hptr, NULL);
                 OPENSSL_free(hptr);
 		RSA_set_ex_data(rsa, hndidx_rsa, NULL);
                 }
