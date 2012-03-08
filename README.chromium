@@ -85,6 +85,11 @@ new algorithm and old algorithm.
 crbug.com/111045 is used to track this issue.
 
 
+tls_exporter.patch
+
+Keying Material Exporters for Transport Layer Security (RFC 5705).
+
+
 Android platform support
 
 Copy config/android/openssl/opensslconf.h from Android's
